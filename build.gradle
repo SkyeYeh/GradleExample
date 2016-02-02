@@ -21,3 +21,18 @@ dependencies {
     compile group: 'log4j', name: 'log4j', version: '1.2.16'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+/**
+ * Example1。
+ */
+task example1 << {
+    /* def 是 Groovy 內的萬用型別，不管是物件還是原生變數甚至 void 都能用它代替，如果看不慣 def 的寫法，用原先 java 的宣告方式也行 */
+    String message = "hello groovy closure"
+    def codeBlock = { println message }
+
+    /* 加上小括號就當成 method 般呼叫 */
+    codeBlock()
+
+    /* 也能呼叫 Closure 物件的 call() 方法 */
+    codeBlock.call()
+}
