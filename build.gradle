@@ -39,11 +39,10 @@ task example1 << {
 
 /**
  * Example2。
+ * 當 Closure 內無法識別方法或參數時，會透過委派物件處理。
  */
 class JavaHello {
     def sayHello() { println "Hello Java" }
-
-    def sayHello2() { println "Hello Java2" }
 }
 
 class GroovyHello {
@@ -54,15 +53,9 @@ task example2 << {
     def codeBlock = { sayHello() }
 
     /* 在可見的 scope 內依然沒有 sayHello() 方法 */
-    codeBlock()
-}
+    /* Could not find method sayHello() for arguments [] on root project 'gradleExample'. */
+    // codeBlock()
 
-/**
- * Example3。
- * 當 Closure 內無法識別方法或參數時，會透過委派物件處理。
- */
-task example3 << {
-    def codeBlock = { sayHello() }
     /* JavaHello 這件事就交給你吧！ */
     codeBlock.delegate = new JavaHello();
 
