@@ -36,3 +36,42 @@ task example1 << {
     /* 也能呼叫 Closure 物件的 call() 方法 */
     codeBlock.call()
 }
+
+/**
+ * Example2。
+ */
+class JavaHello {
+    def sayHello() { println "Hello Java" }
+
+    def sayHello2() { println "Hello Java2" }
+}
+
+class GroovyHello {
+    def sayHello() { println "Hello Groovy" }
+}
+
+task example2 << {
+    def codeBlock = { sayHello() }
+
+    /* 在可見的 scope 內依然沒有 sayHello() 方法 */
+    codeBlock()
+}
+
+/**
+ * Example3。
+ * 當 Closure 內無法識別方法或參數時，會透過委派物件處理。
+ */
+task example3 << {
+    def codeBlock = { sayHello() }
+    /* JavaHello 這件事就交給你吧！ */
+    codeBlock.delegate = new JavaHello();
+
+    /* 於是印出了 Hello Java */
+    codeBlock()
+
+    /* GroovyHello 這件事就交給你吧！ */
+    codeBlock.delegate = new GroovyHello()
+
+    /* 於是印出了 Hello Groovy */
+    codeBlock()
+}
