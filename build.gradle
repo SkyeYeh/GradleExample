@@ -68,3 +68,14 @@ task example2 << {
     /* 於是印出了 Hello Groovy */
     codeBlock()
 }
+
+/**
+ * example3。
+ */
+task "example3A" << {
+    println("Hi example3A");
+}
+
+task("example3B").doLast({
+    println("Hi example3B");
+})
