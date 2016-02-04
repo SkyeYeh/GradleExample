@@ -7,6 +7,11 @@ apply plugin: 'java'
 /* 引用 application plugin 獲得執行 java 專案相關的 task $ */
 apply plugin: 'application'
 
+/* The source compatibility used for compiling Java sources. */
+sourceCompatibility=1.8
+/* The target compatibility used for compiling Java sources. */
+targetCompatibility=1.8
+
 /* 執行 application plugin 用到的參數 $ */
 mainClassName = "com.skyeYeh.gradleExample.HelloWorld"
 
